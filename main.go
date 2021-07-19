@@ -14,7 +14,7 @@ import (
 	"github.com/zserge/lorca"
 )
 
-//go:embed www
+//go:embed three.js
 var fs embed.FS
 
 // Go types that are bound to the UI must be thread-safe, because each binding
@@ -68,7 +68,7 @@ func main() {
 	}
 	defer ln.Close()
 	go http.Serve(ln, http.FileServer(http.FS(fs)))
-	ui.Load(fmt.Sprintf("http://%s/www", ln.Addr()))
+	ui.Load(fmt.Sprintf("http://%s/three.js/editor", ln.Addr()))
 
 	// You may use console.log to debug your JS code, it will be printed via
 	// log.Println(). Also exceptions are printed in a similar manner.
