@@ -38,14 +38,22 @@ func (c *counter) Value() int {
 	return c.count
 }
 
-func IdxBff(array []int32) {
-	fmt.Println(time.Now())
-	fmt.Println(`Index buffer array length: `, len(array))
+type idxArr struct {
+	array []int32
 }
 
-func VrxBff(array []float32) {
+type vrxArr struct {
+	array []float32
+}
+
+func IdxBff(arr idxArr) {
 	fmt.Println(time.Now())
-	fmt.Println(`Vertex buffer array length: `, len(array))
+	fmt.Println(`Index buffer array length: `, len(arr.array))
+}
+
+func VrxBff(arr vrxArr) {
+	fmt.Println(time.Now())
+	fmt.Println(`Vertex buffer array length: `, len(arr.array))
 }
 
 func main() {
