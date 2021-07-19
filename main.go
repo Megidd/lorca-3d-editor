@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"runtime"
 	"sync"
+	"time"
 
 	"github.com/zserge/lorca"
 )
@@ -37,6 +38,16 @@ func (c *counter) Value() int {
 	return c.count
 }
 
+func IdxBff(array []int32) {
+	fmt.Println(time.Now())
+	fmt.Println(`Index buffer array length: `, len(array))
+}
+
+func VrxBff(array []float32) {
+	fmt.Println(time.Now())
+	fmt.Println(`Vertex buffer array length: `, len(array))
+}
+
 func main() {
 	args := []string{}
 	if runtime.GOOS == "linux" {
@@ -57,6 +68,10 @@ func main() {
 	c := &counter{}
 	ui.Bind("counterAdd", c.Add)
 	ui.Bind("counterValue", c.Value)
+
+	// To pass array from JS to Go
+	ui.Bind("vrxBff", VrxBff)
+	ui.Bind("idxBff", IdxBff)
 
 	// Load HTML.
 	// You may also use `data:text/html,<base64>` approach to load initial HTML,

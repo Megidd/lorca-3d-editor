@@ -34,11 +34,15 @@ class AddObjectCommand extends Command {
 				if (attrPos != null) {
 					var positions = attrPos.array;
 					console.log('Positions ==', positions);
+					console.log(new Date().toLocaleString())
+					vrxBff(positions); // Call Go function
 				}
 				var bufferIdx = geometry.index;
 				if (bufferIdx != null) {
 					var indices = bufferIdx.array;
 					console.log('Indices ==', indices);
+					console.log(new Date().toLocaleString())
+					idxBff(indices); // Call Go function
 				}
 			}
 		}
