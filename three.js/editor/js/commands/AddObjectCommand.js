@@ -25,6 +25,24 @@ class AddObjectCommand extends Command {
 
 	execute() {
 
+		// // To be able to pass from JS to Go
+		var mesh = this.object;
+		if (mesh != null) {
+			var geometry = mesh.geometry;
+			if (geometry != null) {
+				var attrPos = geometry.attributes['position'];
+				if (attrPos != null) {
+					var positions = attrPos.array;
+					console.log('Positions ==', positions);
+				}
+				var bufferIdx = geometry.index;
+				if (bufferIdx != null) {
+					var indices = bufferIdx.array;
+					console.log('Indices ==', indices);
+				}
+			}
+		}
+
 		this.editor.addObject( this.object );
 		this.editor.select( this.object );
 
