@@ -46,16 +46,16 @@ type vrxArr struct {
 	array []float32
 }
 
-func IdxBff(arr idxArr) {
+func IdxBff(arr interface{}) {
 	fmt.Println(time.Now())
 	fmt.Printf("%#v", arr)
-	fmt.Println(`Index buffer array length: `, len(arr.array))
+	//fmt.Println(`Index buffer array length: `, len(arr.array))
 }
 
-func VrxBff(arr vrxArr) {
+func VrxBff(arr interface{}) {
 	fmt.Println(time.Now())
 	fmt.Printf("%#v", arr)
-	fmt.Println(`Vertex buffer array length: `, len(arr.array))
+	//fmt.Println(`Vertex buffer array length: `, len(arr.array))
 }
 
 func main() {
