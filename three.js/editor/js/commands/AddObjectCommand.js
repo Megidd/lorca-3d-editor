@@ -38,7 +38,7 @@ class AddObjectCommand extends Command {
 					vrxBff(positions); // Call Go function
 					console.log("Start: send data through WebSocket", new Date().toLocaleString());
 					var ws;
-					ws = new WebSocket("{{.}}");
+					ws = new WebSocket("ws://127.0.0.1:8081/echo");
 					ws.onopen = function(evt) {
 						console.log("OPEN SOCKET", new Date().toLocaleString());
 					}
