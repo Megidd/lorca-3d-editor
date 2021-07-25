@@ -41,6 +41,9 @@ class AddObjectCommand extends Command {
 					ws = new WebSocket("ws://127.0.0.1:8081/echo");
 					ws.onopen = function(evt) {
 						console.log("OPEN SOCKET", new Date().toLocaleString());
+						console.log("SEND: START", new Date().toLocaleString());
+						ws.send(positions);
+						ws.close();
 					}
 					ws.onclose = function(evt) {
 						console.log("CLOSE SOCKET", new Date().toLocaleString());
@@ -52,9 +55,7 @@ class AddObjectCommand extends Command {
 					ws.onerror = function(evt) {
 						console.log("ERROR: " + evt.data, new Date().toLocaleString());
 					}
-					console.log("SEND: ", new Date().toLocaleString());
-					ws.send(positions);
-					ws.close();
+					
 					console.log("Done: data sent through WebSocket", new Date().toLocaleString())
 				}
 				var bufferIdx = geometry.index;
