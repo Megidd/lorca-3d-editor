@@ -36,6 +36,26 @@ class AddObjectCommand extends Command {
 					console.log('Positions ==', positions);
 					console.log(new Date().toLocaleString())
 					vrxBff(positions); // Call Go function
+					console.log("Start: send data through WebSocket", new Date().toLocaleString());
+					var ws;
+					ws = new WebSocket("{{.}}");
+					ws.onopen = function(evt) {
+						console.log("OPEN SOCKET", new Date().toLocaleString());
+					}
+					ws.onclose = function(evt) {
+						console.log("CLOSE SOCKET", new Date().toLocaleString());
+						ws = null;
+					}
+					ws.onmessage = function(evt) {
+						console.log("RESPONSE SOCKET: " + "RECEIVED" /* evt.data */, new Date().toLocaleString());
+					}
+					ws.onerror = function(evt) {
+						console.log("ERROR: " + evt.data, new Date().toLocaleString());
+					}
+					console.log("SEND: ", new Date().toLocaleString());
+					ws.send(positions);
+					ws.close();
+					console.log("Done: data sent through WebSocket", new Date().toLocaleString())
 				}
 				var bufferIdx = geometry.index;
 				if (bufferIdx != null) {
