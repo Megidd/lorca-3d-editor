@@ -41,24 +41,18 @@ func (c *counter) Value() int {
 	return c.count
 }
 
-type idxArr struct {
-	array []int32
-}
+// Lorca sends data with this type, tests indicate
+type idxData map[string]interface{}
+type vrxData map[string]interface{}
 
-type vrxArr struct {
-	array []float32
-}
-
-func IdxBff(arr interface{}) {
+func IdxBff(data idxData) {
 	fmt.Println(time.Now())
-	fmt.Printf("%#v", arr)
-	//fmt.Println(`Index buffer array length: `, len(arr.array))
+	fmt.Println(`Index buffer data length: `, len(data))
 }
 
-func VrxBff(arr interface{}) {
+func VrxBff(data vrxData) {
 	fmt.Println(time.Now())
-	fmt.Printf("%#v", arr)
-	//fmt.Println(`Vertex buffer array length: `, len(arr.array))
+	fmt.Println(`Vertex buffer data length: `, len(data))
 }
 
 func main() {
