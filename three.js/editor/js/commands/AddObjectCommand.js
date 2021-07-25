@@ -36,27 +36,35 @@ class AddObjectCommand extends Command {
 					console.log('Positions ==', positions);
 					console.log(new Date().toLocaleString())
 					//vrxBff(positions); // Call Go function
-					console.log("Start: send data through WebSocket", new Date().toLocaleString());
-					var ws;
-					ws = new WebSocket("ws://127.0.0.1:8081/echo");
-					ws.onopen = function(evt) {
-						console.log("OPEN SOCKET", new Date().toLocaleString());
+					console.log("Start JS code: WebSocket", new Date().toLocaleString());
+					function connect() {
+						return new Promise(function(resolve, reject) {
+							var ws = new WebSocket('ws://127.0.0.1:8081/echo');
+							ws.onopen = function() {
+								resolve(ws);
+							};
+							ws.onerror = function(err) {
+								reject(err);
+							};
+							ws.onclose = function(evt) {
+								console.log("CLOSE SOCKET", new Date().toLocaleString());
+							};
+							ws.onmessage = function(evt) {
+								console.log("RESPONSE SOCKET: " + "RECEIVED" /* evt.data */, new Date().toLocaleString());
+							};
+						});
+					}
+					connect().then(function(ws) {
+						// onopen
+						console.log("OPENED SOCKET", new Date().toLocaleString());
 						console.log("SEND: START", new Date().toLocaleString());
 						ws.send(positions);
 						ws.close();
-					}
-					ws.onclose = function(evt) {
-						console.log("CLOSE SOCKET", new Date().toLocaleString());
-						ws = null;
-					}
-					ws.onmessage = function(evt) {
-						console.log("RESPONSE SOCKET: " + "RECEIVED" /* evt.data */, new Date().toLocaleString());
-					}
-					ws.onerror = function(evt) {
+					}).catch(function(err) {
+						// onerror
 						console.log("ERROR: " + evt.data, new Date().toLocaleString());
-					}
-					
-					console.log("Done: data sent through WebSocket", new Date().toLocaleString())
+					});
+					console.log("End JS code: WebSocket", new Date().toLocaleString())
 				}
 				var bufferIdx = geometry.index;
 				if (bufferIdx != null) {
