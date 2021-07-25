@@ -35,7 +35,7 @@ class AddObjectCommand extends Command {
 					var positions = attrPos.array;
 					console.log('Positions ==', positions);
 					console.log(new Date().toLocaleString())
-					vrxBff(positions); // Call Go function
+					//vrxBff(positions); // Call Go function
 					console.log("Start: send data through WebSocket", new Date().toLocaleString());
 					var ws;
 					ws = new WebSocket("ws://127.0.0.1:8081/echo");
@@ -63,7 +63,7 @@ class AddObjectCommand extends Command {
 					var indices = bufferIdx.array;
 					console.log('Indices ==', indices);
 					console.log(new Date().toLocaleString())
-					idxBff(indices); // Call Go function
+					//idxBff(indices); // Call Go function
 				}
 			}
 		}

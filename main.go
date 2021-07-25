@@ -138,12 +138,15 @@ func echo(w http.ResponseWriter, r *http.Request) {
 			log.Println("read:", err)
 			break
 		}
-		log.Printf("recv: %s", message)
-		err = c.WriteMessage(mt, message)
-		if err != nil {
-			log.Println("write:", err)
-			break
-		}
+		log.Println("recv: message type:", mt)
+		log.Printf("recv: bytes count: %v", len(message))
+		// // // Disable echo and log
+		// log.Printf("recv: %s", message)
+		// err = c.WriteMessage(mt, message)
+		// if err != nil {
+		// 	log.Println("write:", err)
+		// 	break
+		// }
 	}
 }
 
